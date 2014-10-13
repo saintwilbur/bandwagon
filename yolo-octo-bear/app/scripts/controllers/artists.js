@@ -9,6 +9,7 @@
  */
 angular.module('yoloOctoBearApp')
   .controller('ArtistsCtrl', function ($scope) {
+
     $scope.awesomeThings = [
       'Iggy',
       'Ciara',
@@ -24,4 +25,9 @@ angular.module('yoloOctoBearApp')
       $scope.awesomeThings.splice(index, 1);
     };
     
+    $scope.isActive = function (viewLocation) {
+      var active = (viewLocation === $location.path());
+      return active;
+    };
+
   });
