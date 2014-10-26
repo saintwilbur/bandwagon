@@ -25,6 +25,7 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
+	_id: Number,
 	firstName: {
 		type: String,
 		trim: true,
@@ -36,10 +37,6 @@ var UserSchema = new Schema({
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-	},
-	displayName: {
-		type: String,
-		trim: true
 	},
 	email: {
 		type: String,
@@ -59,6 +56,21 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
+	defaultDistance: Number,
+	locations: [{
+		latitude: String,
+		longitude: String,
+		locationName: String,
+		distance: Number
+	}],
+	artists: [{
+		artist_id: Number,
+		status: {
+			type: String
+			enum: ['tracking', 'watching']
+		}
+	}]
+	eventList_id: Number,
 	salt: {
 		type: String
 	},
