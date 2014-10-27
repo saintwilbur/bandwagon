@@ -66,10 +66,10 @@ var UserSchema = new Schema({
 	artists: [{
 		artist_id: Number,
 		status: {
-			type: String
+			type: String,
 			enum: ['tracking', 'watching']
 		}
-	}]
+	}],
 	eventList_id: Number,
 	salt: {
 		type: String

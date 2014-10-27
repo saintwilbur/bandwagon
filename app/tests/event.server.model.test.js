@@ -1,8 +1,8 @@
-'use strict';
+//'use strict';
 
 /**
  * Module dependencies.
- */
+ 
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
@@ -11,11 +11,11 @@ var should = require('should'),
 /**
  * Globals
  */
-var user, event;
+//var user, event;
 
 /**
  * Unit tests
- */
+ 
 describe('Event Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
@@ -52,4 +52,4 @@ describe('Event Model Unit Tests:', function() {
 
 		done();
 	});
-});
+});*/

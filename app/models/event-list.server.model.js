@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var EventListSchema = new Schema({
 	username: String,
 	user_id: Number,
-	events [{
+	events: [{
 		event_id: Number,
 		status: {
 			type: String,
@@ -27,9 +27,9 @@ var EventListSchema = new Schema({
 			latitude: String,
 			longitude: String,
 			venueName: String
-		}
+		},
 		distance: [Number]
-	)],
+	}],
     updated: Date
 });
 
