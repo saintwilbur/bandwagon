@@ -1,16 +1,19 @@
 <section data-ng-controller="HomeController">
-    <div class="row" style="margin-top: 200px" data-ng-hide="authentication.user">
-        <div class="col-md-6 col-md-6-offset" style="padding-top: 5px">
-            <h1><strong>Never miss another show.</strong></h1>
-        </div>
-        <div class="col-md-6 col-md-6-offset">
-            <div>
-                <h2><small>Thundercats iPhone hashtag ennui pickled gentrify actually bicycle rights trust fund</small></h2>
-                <a style="margin-left: 75px; margin-top: 36px" href="/#!/signup" class="btn btn-primary btn-lg" ui-route="/signup" ng-class="{active: $uiRoute}">Sign up</a>
-                <a style="margin-left: 75px; margin-top: 36px" href="/#!/signin" class="btn btn-primary btn-lg" ui-route="/signin" ng-class="{active: $uiRoute}">Sign in</a>
-            </div>
-        </div>
-    </div>
-
-
+	<div class="jumbotron text-center">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+				<img alt="Bandwagn.me" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<h3>Never miss another show.</h3>
+		</div>
+		<div align="center">
+			<p>
+				<a style="margin-top: 20px" href="/#!/signup" class="btn btn-primary btn-lg" ui-route="/signup" ng-class="{active: $uiRoute}">Sign Up</a>
+				<a style="margin-left: 60px; margin-top: 20px" href="/#!/signin" class="btn btn-primary btn-lg" ui-route="/signin" ng-class="{active: $uiRoute}">Sign In</a>
+			</p>
+		</div>
+	</div>
 </section>
