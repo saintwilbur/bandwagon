@@ -6,17 +6,17 @@
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Artist = mongoose.model('Artist');
+	Notification = mongoose.model('Notification');
 
 /**
  * Globals
  */
-var user, artist;
+var user, notification;
 
 /**
  * Unit tests
  */
-describe('Artist Model Unit Tests:', function() {
+describe('Notification Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
@@ -28,7 +28,7 @@ describe('Artist Model Unit Tests:', function() {
 		});
 
 		user.save(function() { 
-			artist = new Artist({
+			notification = new Notification({
 				// Add model fields
 				// ...
 			});
@@ -38,22 +38,16 @@ describe('Artist Model Unit Tests:', function() {
 	});
 
 	describe('Method Save', function() {
-		it('should be able to save artist without problems', function(done) {
-			return artist.save(function(err) {
-				//should.not.exist(err);
-				done();
-			});
-		});
-		it('should be able to delete artist without problems', function(done) {
-			return artist.save(function(err) {
-				//should.not.exist(err);
+		it('should be able to save without problems', function(done) {
+			return notification.save(function(err) {
+				should.not.exist(err);
 				done();
 			});
 		});
 	});
 
 	afterEach(function(done) { 
-		Artist.remove().exec();
+		Notification.remove().exec();
 		User.remove().exec();
 
 		done();

@@ -1,0 +1,114 @@
+UserSchema({
+	username
+	_id
+	firstName
+	lastName
+	email
+	password
+	defaultDistance - distance given to all new locations
+	locations [
+		{
+			latitude
+			longitude
+			locationName
+			distance - modified distance per location
+		}
+	]
+	artists [
+		{
+			artist_id
+			status - tracking (shows on calendar), watching (doesn't show)
+		}
+	]
+	eventList_id
+	defaultNotifications [daysBeforeEvent] - ie notify one month, one week, 48 hours in advance or w/e
+	salt
+	provider?
+	providerData?
+	additionalProviderData?
+	roles?
+	created
+	updated
+	resetPasswordToken
+	resetPasswordExpires
+});
+
+
+EventsListSchema({
+	_id
+	user_id
+	events [
+		{
+			event_id
+			status - show/hide
+			customNotifications [daysBeforeEvent] - additional per-event notifications set up by user
+			notifications [notification_id] - list of notifications to update
+			datetime
+			{
+				date
+				time
+				datetime
+			}
+			venue
+			{
+				latitude
+				longitude
+				venueName
+			}
+			distance [distanceFromUserLocation] - calculated distances
+		}
+	]
+})
+
+
+NotificationSchema({
+	_id
+	notificationTime - datetime that system sends out notification
+	user_id
+	eventList_id - do we need??
+	event_id
+	artist_id
+	distanceFromUserLocation - shortest distance
+)}
+
+
+ArtistSchema({
+	_id
+    artistName
+	tourInfo [event_id]
+    provider?
+    providerData?
+    additionalProvidersData?
+	created
+	updated
+});
+
+
+EventSchema({
+	_id
+	type - concert, show, etc.
+	eventName
+	tourName
+	datetime
+	{
+		date
+		time
+		datetime
+	}
+	otherArtists [artist_id]
+	location
+	{	
+		city
+		region - ie state
+		country
+	}
+	venue
+	{
+		latitude
+		longitude
+		id
+		venueName
+	}
+});
+
+1
