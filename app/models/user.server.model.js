@@ -14,7 +14,6 @@ var validateLocalStrategyProperty = function(property) {
 	return ((this.provider !== 'local' && !this.updated) || property.length);
 };
 
-
 /**
  * A Validation function for local strategy password
  */
@@ -38,10 +37,6 @@ var UserSchema = new Schema({
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-	},
-	displayName: {
-		type: String,
-		trim: true
 	},
 	email: {
 		type: String,
