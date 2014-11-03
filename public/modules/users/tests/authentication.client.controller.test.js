@@ -55,11 +55,7 @@
 
 			// Test scope value
 			expect(scope.authentication.user).toEqual('Fred');
-<<<<<<< HEAD
-			expect($location.url()).toEqual('/artists');
-=======
 			expect($location.url()).toEqual('/calendar');
->>>>>>> jack-dev-update
 		});
 
 		it('$scope.signin() should fail to log in with nothing', function() {
@@ -103,11 +99,7 @@
 			// test scope value
 			expect(scope.authentication.user).toBe('Fred');
 			expect(scope.error).toEqual(undefined);
-<<<<<<< HEAD
-			expect($location.url()).toBe('/artists');
-=======
 			expect($location.url()).toBe('/calendar');
->>>>>>> jack-dev-update
 		});
 
 		it('$scope.signup() should fail to register with duplicate Username', function() {
