@@ -24,6 +24,8 @@ describe('User Model Unit Tests:', function() {
 			email: 'test@test.com',
 			username: 'username',
 			password: 'password',
+			areacode: '12345',
+			distance: '1',
 			provider: 'local'
 		});
 		user2 = new User({
@@ -33,12 +35,14 @@ describe('User Model Unit Tests:', function() {
 			email: 'test@test.com',
 			username: 'username',
 			password: 'password',
+			areacode: '12345',
+			distance: '1',
 			provider: 'local'
 		});
 
 		done();
 	});
-
+ 
 	describe('Method Save', function() {
 		it('should begin with no users', function(done) {
 			User.find({}, function(err, users) {
@@ -58,9 +62,33 @@ describe('User Model Unit Tests:', function() {
 				done();
 			});
 		});
+		
+		it('should show error with invalid email', function(done) {
+			user.firstName = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
 
 		it('should be able to show an error when try to save without first name', function(done) {
 			user.firstName = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+		
+		it('should throw error when areacode not 5-digit length', function(done) {
+			user.firstName = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+		
+		it('should be able to show an error with no last name', function(done) {
+			user.lastName = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();

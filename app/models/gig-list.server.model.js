@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * EventList Schema
+ * GigList Schema
  */
 var GigListSchema = new Schema({
 	username: String,
