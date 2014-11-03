@@ -7,18 +7,18 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * EventList Schema
+ * GigList Schema
  */
-var EventListSchema = new Schema({
+var GigListSchema = new Schema({
 	username: String,
-	user_id: Number,
-	events: [{
-		event_id: Number,
+	user_uid: Number,
+	gigs: [{
+		gig_uid: Number,
 		status: {
 			type: String,
 			enum: ['show', 'hide'],
 			default: 'show'
-		},			
+		},
 		customNotifications: [Number],
 		notifications: [Number],
 		datetime: Date,
@@ -33,4 +33,4 @@ var EventListSchema = new Schema({
     updated: Date
 });
 
-mongoose.model('EventList', EventListSchema);
+mongoose.model('GigList', GigListSchema);

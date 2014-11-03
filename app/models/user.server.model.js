@@ -26,7 +26,7 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
-	_id: Number,
+	_uid: Number,
 	firstName: {
 		type: String,
 		trim: true,
@@ -69,19 +69,18 @@ var UserSchema = new Schema({
 		distance: Number
 	}],
 	artists: [{
-		artist_id: Number,
+		artist_uid: Number,
 		status: {
 			type: String,
 			enum: ['tracking', 'watching']
 		}
 	}],
-	eventList_id: Number,
+	gigList_uid: Number,
 	salt: {
 		type: String
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
 	},
 	providerData: {},
 	additionalProvidersData: {},

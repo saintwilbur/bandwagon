@@ -3,20 +3,23 @@
 /**
  * Module dependencies.
  */
+ 
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	EventList = mongoose.model('EventList');
+	GigList = mongoose.model('GigList');
 
 /**
  * Globals
  */
-var user, eventList;
+ 
+var user, gigList;
 
 /**
  * Unit tests
  */
-describe('Event list Model Unit Tests:', function() {
+ 
+describe('Gig list Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
@@ -28,7 +31,7 @@ describe('Event list Model Unit Tests:', function() {
 		});
 
 		user.save(function() { 
-			eventList = new EventList({
+			gigList = new GigList({
 				// Add model fields
 				// ...
 			});
@@ -39,7 +42,7 @@ describe('Event list Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return eventList.save(function(err) {
+			return gigList.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -47,7 +50,7 @@ describe('Event list Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) { 
-		EventList.remove().exec();
+		GigList.remove().exec();
 		User.remove().exec();
 
 		done();

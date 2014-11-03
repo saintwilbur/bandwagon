@@ -7,15 +7,15 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Event Schema
+ * Gig Schema
  */
-var EventSchema = new Schema({
-	_id: Number,
+var GigSchema = new Schema({
+	_uid: Number,
 	type: String,
-	eventName: String,
+	gigName: String,
 	tourName: String,
 	date: Date,
-	otherArtists: [Number], //artist_id
+	otherArtists: [Number], //artist_uid
 	location: {
 		city: String,
 		region: String,
@@ -24,10 +24,9 @@ var EventSchema = new Schema({
 	venue: {
 		latitude: String,
 		longitude: String,
-		//venue_id: Number,
 		venueName: String
 	},
     updated: Date
 });
 
-mongoose.model('Event', EventSchema);
+mongoose.model('Gig', GigSchema);

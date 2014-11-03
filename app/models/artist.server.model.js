@@ -17,17 +17,16 @@ var validateLocalStrategyProperty = function(property) {
  * Artist Schema
  */
 var ArtistSchema = new Schema({
-	_id: Number,
+	_uid: Number,
 	artistName: {
 		type: String,
 		trim: true,
-		default: '',
+		default: 'Artist',
 		validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
 	},
-	tourInfo: [Number], //event_ids
+	tourInfo: [Number], //gig_uids
 	provider: {
 		type: String,
-		required: 'Provider is required'
 	},
 	providerData: {},
 	additionalProvidersData: {},
