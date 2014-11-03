@@ -13,8 +13,8 @@ var NotificationSchema = new Schema({
 	_uid: Number,
 	notificationTime: Date,
 	user_uid: Number,
-	eventList_uid: Number,
-	event_uid: Number,
+	gigList_uid: Number,
+	gig_uid: Number,
 	artist_uid: Number,
 	distanceFromUserLocation: Number,
     updated: Date
