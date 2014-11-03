@@ -25,6 +25,15 @@ var ArtistSchema = new Schema({
         validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
     },
 	tourInfo: [Number], //gig_uids
+    users: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+        /*artist_uid: Number,
+        status: {
+            type: String,
+            enum: ['tracking', 'watching']
+        }*/
+    }],
     provider: {
         type: String
     },

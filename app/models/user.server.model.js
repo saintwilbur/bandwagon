@@ -64,11 +64,13 @@ var UserSchema = new Schema({
 		distance: Number
 	}],
 	artists: [{
-		artist_uid: Number,
+		type: mongoose.Schema.ObjectId,
+		ref: 'Artist'
+		/*artist_uid: Number,
 		status: {
 			type: String,
 			enum: ['tracking', 'watching']
-		}
+		}*/
 	}],
 	gigList_uid: Number,
 	salt: {
