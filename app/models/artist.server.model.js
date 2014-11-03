@@ -17,14 +17,14 @@ var validateLocalStrategyProperty = function(property) {
  * Artist Schema
  */
 var ArtistSchema = new Schema({
-//	_id: Number,
+	_uid: Number,
     artistName: {
         type: String,
         trim: true,
         default: 'Artist',
         validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
     },
-	tourInfo: [Number], //event_ids
+	tourInfo: [Number], //gig_ids
     provider: {
         type: String
     },
@@ -38,4 +38,5 @@ var ArtistSchema = new Schema({
         default: Date.now
     }
 });
+
 mongoose.model('Artist', ArtistSchema);
