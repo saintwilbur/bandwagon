@@ -1,34 +1,36 @@
-//'use strict';
+'use strict';
 
 /**
  * Module dependencies.
- 
+*/
+
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Event = mongoose.model('Event');
+	Gig = mongoose.model('Gig');
 
 /**
  * Globals
  */
-//var user, event;
+
+ var user, gig;
 
 /**
  * Unit tests
+ */
  
-describe('Event Model Unit Tests:', function() {
+describe('Gig Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
-			displayName: 'Full Name',
 			email: 'test@test.com',
 			username: 'username',
 			password: 'password'
 		});
 
 		user.save(function() { 
-			event = new Event({
+			gig = new Gig({
 				// Add model fields
 				// ...
 			});
@@ -39,7 +41,7 @@ describe('Event Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return event.save(function(err) {
+			return gig.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -47,9 +49,9 @@ describe('Event Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) { 
-		Event.remove().exec();
+		Gig.remove().exec();
 		User.remove().exec();
 
 		done();
 	});
-});*/
+});

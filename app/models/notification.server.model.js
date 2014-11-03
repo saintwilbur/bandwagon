@@ -10,12 +10,12 @@ var mongoose = require('mongoose'),
  * Notification Schema
  */
 var NotificationSchema = new Schema({
-	_id: Number,
+	_uid: Number,
 	notificationTime: Date,
-	user_id: Number,
-	eventList_id: Number,
-	event_id: Number,
-	artist_id: Number,
+	user_uid: Number,
+	gigList_uid: Number,
+	gig_uiid: Number,
+	artist_uid: Number,
 	distanceFromUserLocation: Number,
     updated: Date
 });
