@@ -12,6 +12,7 @@ var should = require('should'),
 /**
  * Globals
  */
+ 
 var user, gigList;
 
 /**

@@ -70,13 +70,12 @@ var UserSchema = new Schema({
 			enum: ['tracking', 'watching']
 		}
 	}],
-	eventList_uid: Number,
+	gigList_uid: Number,
 	salt: {
 		type: String
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
 	},
 	providerData: {},
 	additionalProvidersData: {},

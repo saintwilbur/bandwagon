@@ -14,7 +14,7 @@ var NotificationSchema = new Schema({
 	notificationTime: Date,
 	user_uid: Number,
 	gigList_uid: Number,
-	gig_uiid: Number,
+	gig_uid: Number,
 	artist_uid: Number,
 	distanceFromUserLocation: Number,
     updated: Date

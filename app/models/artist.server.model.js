@@ -24,7 +24,7 @@ var ArtistSchema = new Schema({
         default: 'Artist',
         validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
     },
-	tourInfo: [Number], //gig_ids
+	tourInfo: [Number], //gig_uids
     provider: {
         type: String
     },
