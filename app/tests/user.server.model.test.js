@@ -51,7 +51,7 @@ describe('User Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to save without problems', function(done) {
+		it('should save new user without problems', function(done) {
 			user.save(done);
 		});
 
@@ -62,38 +62,54 @@ describe('User Model Unit Tests:', function() {
 				done();
 			});
 		});
-		
-		it('should show error with invalid email', function(done) {
-			user.firstName = '';
-			return user.save(function(err) {
-				should.exist(err);
-				done();
-			});
-		});
 
-		it('should be able to show an error when try to save without first name', function(done) {
+		it('should show an error on creating user without first name', function(done) {
 			user.firstName = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
-		
-		it('should throw error when areacode not 5-digit length', function(done) {
-			user.firstName = '';
-			return user.save(function(err) {
-				should.exist(err);
-				done();
-			});
-		});
-		
-		it('should be able to show an error with no last name', function(done) {
+		it('should show an error on creating user without last name', function(done) {
 			user.lastName = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
+
+		it('should show error on creating user with invalid email', function(done) {
+			user.email = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+		it('should show error on creating user without username', function(done) {
+			user.username = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+		it('should show error on creating user without password', function(done) {
+			user.password = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+		it('should show error when areacode not 5-digit length', function(done) {
+			user.areacode = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
 	});
 
 	after(function(done) {
