@@ -67,7 +67,7 @@ describe('Artist Model Unit Tests:', function() {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
 				query.exec(function(err, result) {
-					(result.artistName === undefined).should.be.false;
+					var resultName = (result.artistName === undefined).should.be.false;
 					result.artistName.should.equal(artist.artistName);
 					done();
 				});
@@ -78,7 +78,8 @@ describe('Artist Model Unit Tests:', function() {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
 				query.exec(function(err, result) {
-					(result.tourInfo === undefined).should.be.false;
+					var resultTour = (result.tourInfo === undefined).should.be.false;
+					result.artistName.should.equal(artist.artistName);
 					done();
 				});
 			});
@@ -89,7 +90,7 @@ describe('Artist Model Unit Tests:', function() {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
 				query.exec(function(err, result) {
-					(result.users === undefined).should.be.false;
+					var resultUsers = (result.users === undefined).should.be.false;
 					result.users.should.have.length(1);
 					done();
 				});
