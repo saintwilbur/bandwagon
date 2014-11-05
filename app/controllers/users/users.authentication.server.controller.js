@@ -103,6 +103,7 @@ exports.oauthCallback = function(strategy) {
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
     console.log('SAVING OAUTH PROFILE');
 	if (!req.user) {
+        console.log('!reg.user');
 		// Define a search query fields
 		var searchMainProviderIdentifierField = 'providerData.' + providerUserProfile.providerIdentifierField;
 		var searchAdditionalProviderIdentifierField = 'additionalProvidersData.' + providerUserProfile.provider + '.' + providerUserProfile.providerIdentifierField;
@@ -123,9 +124,11 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 
 		User.findOne(searchQuery, function(err, user) {
 			if (err) {
+                console.log('User.findOne err');
 				return done(err);
 			} else {
 				if (!user) {
+                    console.log('User.findOne !user');
 					var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
 
 					User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
@@ -150,6 +153,7 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 			}
 		});
 	} else {
+        console.log('User already logged in', req.user);
 		// User is already logged in, join the provider data to the existing user
 		var user = req.user;
         console.log('User already exists, adding provider data', user);
@@ -167,6 +171,7 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 				return done(err, user, '/#!/settings/accounts');
 			});
 		} else {
+            console.log('User is already connected with this provider');
 			return done(new Error('User is already connected using this provider'), user);
 		}
 	}
