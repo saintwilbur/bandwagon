@@ -88,7 +88,19 @@ var UserSchema = new Schema({
 	},
   	resetPasswordExpires: {
   		type: Date
-  	}
+  	},
+
+    //integrations:
+    soundcloud: {
+        id: {
+            type: String,
+            default: ''
+        },
+        token: {
+            type: String,
+            default: ''
+        }
+    }
 });
 
 /**
