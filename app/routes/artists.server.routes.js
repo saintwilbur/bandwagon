@@ -10,7 +10,7 @@ module.exports = function(app) {
     var artists = require('../../app/controllers/artists');
 
 
-    app.route('/art/add').post(artists.create);
+    app.route('/art/add').post(artists.findArtist);
 
     app.route('/art/get').get(artists.get);
     //app.route('/delete').delete(artists.delete)

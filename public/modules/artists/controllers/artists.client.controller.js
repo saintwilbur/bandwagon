@@ -14,7 +14,7 @@ angular.module('artists').controller('ArtistsController', ['$scope', '$http', '$
 
         $scope.add = function() {
             console.log('scope: ', $scope);
-            $scope.details.addedBy = Authentication.user._id;
+            //$scope.details.addedBy = Authentication.user._id;
 
             $http.post('/art/add', $scope.details).success(function(response) {
                 //
