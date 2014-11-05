@@ -67,6 +67,7 @@ var UserSchema = new Schema({
 		required: 'Provider is required'
 	},
 	providerData: {},
+    //Needed for integrations
 	additionalProvidersData: {},
 	roles: {
 		type: [{
@@ -91,16 +92,7 @@ var UserSchema = new Schema({
   	},
 
     //integrations:
-    soundcloud: {
-        id: {
-            type: String,
-            default: ''
-        },
-        token: {
-            type: String,
-            default: ''
-        }
-    }
+    soundcloud: {}
 });
 
 /**
