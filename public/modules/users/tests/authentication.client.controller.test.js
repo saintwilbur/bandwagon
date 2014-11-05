@@ -55,7 +55,7 @@
 
 			// Test scope value
 			expect(scope.authentication.user).toEqual('Fred');
-			expect($location.url()).toEqual('/');
+			expect($location.url()).toEqual('/calendar');
 		});
 
 		it('$scope.signin() should fail to log in with nothing', function() {
@@ -72,7 +72,7 @@
 		});
 
 		it('$scope.signin() should fail to log in with wrong credentials', function() {
-			// Foo/Bar combo assumed to not exist
+			// Foo/( combo assumed to not exist
 			scope.authentication.user = 'Foo';
 			scope.credentials = 'Bar';
 
@@ -99,7 +99,7 @@
 			// test scope value
 			expect(scope.authentication.user).toBe('Fred');
 			expect(scope.error).toEqual(undefined);
-			expect($location.url()).toBe('/');
+			expect($location.url()).toBe('/calendar');
 		});
 
 		it('$scope.signup() should fail to register with duplicate Username', function() {
