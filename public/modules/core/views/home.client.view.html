@@ -1,11 +1,11 @@
 <section data-ng-controller="HomeController">
     <div class="row" style="margin-top: 150px" data-ng-hide="authentication.user">
         <div class="col-md-6 col-md-6-offset" style="padding-top: 5px">
-            <h1><strong>Never miss another show.</strong></h1>
+            <h1><strong>Never miss another concert.</strong></h1>
             <p>Get upcoming concert info about your favorite bands from your favorite online music profiles
             like SoundCloud, Spotify, Grooveshark, last.fm, and more.</p>
             <p>Manage your artists and choose which tours you want to be updated on the most frequently</p>
-            <p>Choose to receive emails, texts, or both as frequently as you want and as close to the live shows as you want.</p>
+            <!--<p>Choose to receive emails, texts, or both as frequently as you want and as close to the live shows as you want.</p>-->
         </div>
         <div class="col-md-6 col-md-6-offset">
             <div>
@@ -17,11 +17,12 @@
     </div>
     <p></p>
     <div>
-        <img src="http://icons.iconarchive.com/icons/danleech/simple/512/soundcloud-icon.png" width="200" height="200">
+        <a href="/auth/soundcloud" data-ng-show="authentication.user"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/soundcloud-icon.png" width="200" height="200"></a >
+        <a data-ng-hide="authentication.user"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/soundcloud-icon.png" width="200" height="200"></a >
         <img src="http://cdn.androidpolice.com/wp-content/uploads/2012/08/nexusae0_146.png" width="200" height="200">
-        <a href="http://imgur.com/OxndiqI"><img src="http://i.imgur.com/OxndiqI.png" title="source: imgur.com" width="200" height="200"/></a>
-        <a href="http://imgur.com/uxwZikY"><img src="http://i.imgur.com/uxwZikY.png" title="source: imgur.com" width="200" height="200"/></a>
-        <a href="http://imgur.com/EXP9OX1"><img src="http://i.imgur.com/EXP9OX1.png" title="source: imgur.com" width="200" height="200"/></a>
+        <img src="http://i.imgur.com/OxndiqI.png" width="200" height="200">
+        <img src="http://i.imgur.com/uxwZikY.png" width="200" height="200">
+        <img src="http://i.imgur.com/EXP9OX1.png" width="200" height="200">
     </div>
 
 
