@@ -7,7 +7,8 @@ var passport = require('passport'),
     url = require('url'),
     SoundCloudStrategy = require('passport-soundcloud').Strategy,
     config = require('../config'),
-    users = require('../../app/controllers/users');
+    users = require('../../app/controllers/users'),
+    soundcloudAPI = require('soundcloud-node');
 
 module.exports = function(){
     //use soundcloud strategy
@@ -43,6 +44,24 @@ module.exports = function(){
             requestData.path = '/users/' + profile.id + '/followings';
             //todo: scrub this, scrub.
             requestData.params = {clientID: 'e4e0fdb81cf9639598a43f9071cd48c1'};
+
+            /*
+            var client = new soundcloudAPI('e4e0fdb81cf9639598a43f9071cd48c1', '73e1fe894b8b7981bc2f39fd94744a9b',
+                'http://localhost:3000/auth/soundcloud/callback');
+            client.setToken(accessToken);
+
+            var credentials = {
+                access_token: accessToken,
+                user_id: profile.id
+            };
+            console.log('creds: ', credentials);
+            var client = new soundcloudAPI('e4e0fdb81cf9639598a43f9071cd48c1', '73e1fe894b8b7981bc2f39fd94744a9b', 'http://localhost:3000/auth/soundcloud/callback', credentials);
+            client.get('/users/273281/favorites', function (data) {
+                console.log(data.title);
+            });
+            console.log('client: ', client);
+            */
+
             //console.log('req: ', req);
             //console.log('nice!');
             //console.log("setup providerUserProfile");
