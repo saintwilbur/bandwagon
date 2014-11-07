@@ -10,7 +10,7 @@ var _ = require('lodash'),
     User = mongoose.model('User');
 
 exports.getSoundCloudOAuthToken = function(req, res) {
-    var SoundCloudAPI = require("soundcloud-node");
+    var SoundCloudAPI = require('soundcloud-node');
 
     // instantiate the client
     var client = new SoundCloudAPI(client_id, client_secret, redirect_uri);
