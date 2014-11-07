@@ -52,18 +52,8 @@ module.exports = function(app) {
 	app.route('/auth/github').get(passport.authenticate('github'));
 	app.route('/auth/github/callback').get(users.oauthCallback('github'));
 
-    //soundcloud api
-    app.route('/auth/soundcloud').get(passport.authenticate('soundcloud'));
-    app.route('/auth/soundcloud/callback').get(users.oauthCallback('soundcloud'));
-
-/*
-    app.get('/auth/soundcloud/callback',
-        passport.authenticate('soundcloud', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
-*/
+    // Setting the soundcloud oauth routes
+    app.route('/auth/soundcloud').get(users.getSoundCloudOAuthToken());
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
