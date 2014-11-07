@@ -7,6 +7,6 @@ angular.module('users').controller('IntegrationsController', ['$scope',
 
         $scope.getOAuthToken = function() {
 
-        }
+        };
 	}
 ]);
