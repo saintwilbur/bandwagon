@@ -1,6 +1,21 @@
 <section data-ng-controller="IntegrationsController">
-
-  <a href="/auth/soundcloud" id="signin-soundcloud" class="connect">Connect with SoundCloud</a>
-
-
+  <h3 class="col-md-12 text-center" data-ng-show="hasConnectedMusicAccounts()">Connected music accounts:</h3>
+	<div class="col-md-12 text-center">
+		<div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
+			<img ng-src="/modules/users/img/music_buttons/{{providerName}}.png">
+			<a class="btn btn-danger btn-remove-account" data-ng-click="removeUserMusicAccount(providerName)">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
+	</div>
+	<h3 class="col-md-12 text-center">Connect other music accounts:</h3>
+	<div class="col-md-12 text-center">
+		<a href="/auth/soundcloud" data-ng-hide="isConnectedSocialAccount('soundcloud')">
+			<img src="/modules/users/img/music_buttons/soundcloud.png" width="128" height = "128">
+		</a>
+		<img src="/modules/users/img/music_buttons/grooveshark.png" width="128" height = "128">
+		<img src="/modules/users/img/music_buttons/spotify.png" width="128" height = "128">
+  		<img src="/modules/users/img/music_buttons/google_play.png" width="128" height = "128">
+  		<img src="/modules/users/img/music_buttons/last_fm.png" width="128" height = "128">
+	</div>
 </section>
