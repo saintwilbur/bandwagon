@@ -15,7 +15,6 @@ var _ = require('lodash'),
 exports.create = function(req, res) {
     console.log('Artist create');
     // Init Variables
-    //var artist = new Artist(req.body);
     var artist = new Artist(req.body);
     var message = null;
 
@@ -45,11 +44,38 @@ exports.create = function(req, res) {
     });
 };
 
+exports.findArtist = function(req, res) {
+    console.log('FIND ARTIST: ');
+    console.log(req.body);
+    var artist = req.body;
+    var user = req.user;
+
+    //finds all artists with the name and adds them to the artists array of users
+    Artist.find({artistName: artist.artistName, users: {$nin: [user]}}, function(err, artists) {
+        if (err) {
+           res.send(err);
+        }
+
+        console.log(artists);
+
+        for (var i = 0; i < artists.length; i++) {
+            user.artists.push(artists[i]);
+            user.save();
+            console.log('ADD ARTIST TO USER ID ARRAY OF ARTISTS: ', user.artists);
+            artists[i].users.push(user);
+            artists[i].save();
+            console.log('ADD USER TO ARTIST ID ARRAY OF USERS: ', artists[i].users);
+        }
+    });
+    res.jsonp(artist);
+};
+
 /**
  * Get Artists by UserID
  */
 exports.get = function(req, res) {
-    console.log('GET ARTISTS BY USER ID: ', req.user);
+    var user = req.user;
+    console.log('GET ARTISTS BY USER ID: ', user);
     /*
     Artist.findOne({
      addedBy: id
@@ -60,7 +86,7 @@ exports.get = function(req, res) {
      });
 
     */
-     Artist.find(function(err, artists) {
+     Artist.find({users: user}, function(err, artists) {
      if (err) {
         res.send(err);
      }

@@ -18,6 +18,40 @@ var soundcloud = {
     //access_token : users.
 };
 
+exports.apiReq = function(req, res) {
+    // /users/{id}/followings
+    // Set the headers
+    /*
+
+   var headers = {
+        'User-Agent': 'Super Agent/0.0.1',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+
+// Configure the request
+    var options = {
+        url: req.path,
+        method: 'GET',
+        headers: headers
+    };
+    */
+// Start the request
+    request(req.options, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+
+            //acess body by converting to json object, JSON.parse(body)
+            //res.send(body);
+            //console.log(res);
+            res(JSON.parse(body));
+        } else {
+            console.log('nope!', error);
+        }
+    });
+
+};
+/*
+// DEPRECATED
 function _request(data, callback) {
     console.log('LETS MAKE A REQUEST');
     var options, params, req;
@@ -72,45 +106,46 @@ function _request(data, callback) {
     return req.end();
 }
 
-/*
-function _setupRequest(host_api, access_token, data, method, path, params, callback) {
-    var requestData;
-    if (callback === null) {
-        callback = function() {};
-    }
-    if (access_token === null) {
-        return callback({
-            message: 'access_token is required.'
-        }, null);
-    }
-    requestData = {
-        method: method.toUpperCase(),
-        uri: host_api
-    };
-    if (path[0] !== '/') {
-        path = '/' + path;
-    }
-    requestData.path = path;
-    if (typeof params === 'function') {
-        callback = params;
-        params = null;
-    }
-    params = params || {
-        format: 'json'
-    };
-    params.oauth_token = access_token;
-    requestData.params = params;
-    //return _request.apply(this, [requestData, callback]);
-    _request.apply(data, [requestData, callback]);
-}
+
+ function _setupRequest(host_api, access_token, data, method, path, params, callback) {
+ var requestData;
+ if (callback === null) {
+ callback = function() {};
+ }
+ if (access_token === null) {
+ return callback({
+ message: 'access_token is required.'
+ }, null);
+ }
+ requestData = {
+ method: method.toUpperCase(),
+ uri: host_api
+ };
+ if (path[0] !== '/') {
+ path = '/' + path;
+ }
+ requestData.path = path;
+ if (typeof params === 'function') {
+ callback = params;
+ params = null;
+ }
+ params = params || {
+ format: 'json'
+ };
+ params.oauth_token = access_token;
+ requestData.params = params;
+ //return _request.apply(this, [requestData, callback]);
+ _request.apply(data, [requestData, callback]);
+ }
 
 
 
-/*
-exports.apiRequest = function(host_api, access_token, data, method, path, params, callback) {
-    return _setupRequest(host_api, access_token, data, method, path, params, callback);
-};
-*/
+
+ exports.apiRequest = function(host_api, access_token, data, method, path, params, callback) {
+ return _setupRequest(host_api, access_token, data, method, path, params, callback);
+ };
+
+// DEPRECATED
 function _setupRequest(data, callback) {
     console.log('_setupRequest');
     var requestData;
@@ -155,32 +190,4 @@ exports.apiRequest = function(data, callback) {
     return _setupRequest(data, callback);
 };
 
-exports.apiReq = function(req, res) {
-    // /users/{id}/followings
-    // Set the headers
-    var headers = {
-        'User-Agent':       'Super Agent/0.0.1',
-        'Content-Type':     'application/x-www-form-urlencoded'
-    };
-
-// Configure the request
-    var options = {
-        url: soundcloud.host_api + '/users/36597430/favorites.json?client_id=e4e0fdb81cf9639598a43f9071cd48c1',
-        method: 'GET',
-        headers: headers
-    };
-
-// Start the request
-    request(options, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-
-            //acess body by converting to json object, JSON.parse(body)
-            res.send(body);
-        } else {
-            console.log('nope!', error);
-        }
-
-    });
-
-};
-
+*/

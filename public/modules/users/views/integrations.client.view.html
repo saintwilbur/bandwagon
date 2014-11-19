@@ -15,8 +15,10 @@
 			<img src="/modules/users/img/music_buttons/soundcloud.png" width="128" height = "128">
 		</a>
 		<img src="/modules/users/img/music_buttons/grooveshark.png" width="128" height = "128">
-		<img src="/modules/users/img/music_buttons/spotify.png" width="128" height = "128">
-  		<img src="/modules/users/img/music_buttons/google_play.png" width="128" height = "128">
-  		<img src="/modules/users/img/music_buttons/last_fm.png" width="128" height = "128">
+    <a href="/auth/spotify" data-ng-hide="isConnectedSocialAccount('spotify')">
+		  <img src="/modules/users/img/music_buttons/spotify.png" width="128" height = "128">
+    </a>
+    <img src="/modules/users/img/music_buttons/google_play.png" width="128" height = "128">
+    <img src="/modules/users/img/music_buttons/last_fm.png" width="128" height = "128">
 	</div>
 </section>
