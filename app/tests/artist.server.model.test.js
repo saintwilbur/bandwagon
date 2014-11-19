@@ -38,7 +38,7 @@ describe('Artist Model Unit Tests:', function() {
 		});
 	});
 
-	describe('Method Save', function() {
+	describe('Artist Properties', function() {
 		it('should begin with no artists', function(done) {
 			Artist.find({}, function(err, artists) {
 				artists.should.have.length(0);
@@ -74,10 +74,12 @@ describe('Artist Model Unit Tests:', function() {
 			});
 		});
 
-		it('should retrieve tour info for given artist', function(done) {
+		it('should retrieve tour info for given artist when added', function(done) {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
 				query.exec(function(err, result) {
+					// Currently checking that it should be undefined, once we start pulling in tour info,
+					// check for undefined === false
 					var resultTour = (result.tourInfo === undefined).should.be.true;
 					result.artistName.should.equal(artist.artistName);
 					done();
@@ -96,6 +98,66 @@ describe('Artist Model Unit Tests:', function() {
 				});
 			});
 		});
+
+		it('should retrieve provider information when added', function(done) {
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					// Currently checking that it should be undefined, once we start pulling in provider information,
+					// check for undefined === false
+					var resultProvider = (result.provider === undefined).should.be.true;
+					result.artistName.should.equal(artist.artistName);
+					done();
+				});
+			});
+		});
+
+		it('should remove users without problems', function(done) {
+			artist.users.pop(user);
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					var resultUsers = (result.users === undefined).should.be.false;
+					result.users.should.have.length(0);
+					done();
+				});
+			});
+		});
+
+		it('should check the creation date of the artist object without problems', function(done) {
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					var resultCreated = (result.created === undefined).should.be.false;
+					result.artistName.should.equal(artist.artistName);
+					done();
+				});
+			});
+		});
+
+		it('should check the updated date of the artist object without problems once updates have been recorded', function(done) {
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					var resultUpdated = (result.updated === undefined).should.be.true;
+					result.artistName.should.equal(artist.artistName);
+					done();
+				});
+			});
+		});
+
+		it('should retrieve artist by artistID (_uid)', function(done) {
+			artist.save(function(err) {
+				var query = Artist.findOne({'_uid' : artist._uid});
+				query.exec(function(err, result) {
+					// user IDs aren't implemented yet
+					var resultID = (result._uid === undefined).should.be.true;
+					result.artistName.should.equal(artist.artistName);
+					done();
+				});
+			});
+		});
+
 	});
 
 	afterEach(function(done) { 
