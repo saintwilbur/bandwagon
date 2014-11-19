@@ -78,7 +78,7 @@ describe('Artist Model Unit Tests:', function() {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
 				query.exec(function(err, result) {
-					var resultTour = (result.tourInfo === undefined).should.be.false;
+					var resultTour = (result.tourInfo === undefined).should.be.true;
 					result.artistName.should.equal(artist.artistName);
 					done();
 				});

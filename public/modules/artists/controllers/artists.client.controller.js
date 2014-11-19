@@ -32,7 +32,7 @@ angular.module('artists').controller('ArtistsController', ['$scope', '$http', '$
             $http.get('/art/get', {'id' : '008'}).success(function(res) {
                 console.log('get success: ', res);
                 $scope.artists = res;
-                console.log("RES", res);
+                console.log('RES', res);
                // $scope.artistNames = res;
             }).error(function(res) {
                 console.log('get error: ', res);
