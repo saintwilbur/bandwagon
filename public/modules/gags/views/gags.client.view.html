@@ -1,0 +1,14 @@
+<section data-ng-controller="GagsController">
+    <div class="row" style="margin-top: 50px" data-ng-show="authentication.user">
+        <div>
+            <center><h1><small>Calendar</small></h1></center>
+			<br>
+			<br>
+            <table>
+                <tr data-ng-repeat="gag in gags" ng-init="gag.dateStr = ( gag.date | date:'MMMdd' )">
+                    <td>{{gag.dateStr}} &nbsp; | &nbsp; {{gag.gagName}} &nbsp; | &nbsp; {{gag.venue.city}}, {{gag.venue.region}} &nbsp; | &nbsp; {{gag.venue.venueName}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
