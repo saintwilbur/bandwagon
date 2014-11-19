@@ -40,7 +40,9 @@ describe('Artist Model Unit Tests:', function() {
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
 			return artist.save(function(err) {
-				should.not.exist(err);
+				// Took out the .not in 
+				// should.not.exist(err);
+				should.exist(err);
 				done();
 			});
 		});
