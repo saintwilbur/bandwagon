@@ -55,7 +55,9 @@
 
 			// Test scope value
 			expect(scope.authentication.user).toEqual('Fred');
-			expect($location.url()).toEqual('/');
+			// changed expect($location.url()).toEqual('/');
+			// to expect($location.url()).toEqual('/artists');
+			expect($location.url()).toEqual('/artists');
 		});
 
 		it('$scope.signin() should fail to log in with nothing', function() {
@@ -99,7 +101,9 @@
 			// test scope value
 			expect(scope.authentication.user).toBe('Fred');
 			expect(scope.error).toEqual(undefined);
-			expect($location.url()).toBe('/');
+			// changed expect($location.url()).toBe('/');
+			// to expect($location.url()).toBe('/artists');
+			expect($location.url()).toBe('/artists');
 		});
 
 		it('$scope.signup() should fail to register with duplicate Username', function() {

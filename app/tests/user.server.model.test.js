@@ -87,14 +87,6 @@ describe('User Model Unit Tests:', function() {
 			});
 		});
 
-		it('should show error on creating user without username', function(done) {
-			user.username = '';
-			return user.save(function(err) {
-				should.exist(err);
-				done();
-			});
-		});
-
 		it('should show error on creating user without password', function(done) {
 			user.password = '';
 			return user.save(function(err) {
@@ -103,13 +95,24 @@ describe('User Model Unit Tests:', function() {
 			});
 		});
 
-		it('should show error when areacode not 5-digit length', function(done) {
+		
+
+		it('should show error on creating user without username', function(done) {
+			user.username = '';
+			return user.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+		it('should show error on creating user without area code', function(done) {
 			user.areacode = '';
 			return user.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
+
 	});
 
 	after(function(done) {
