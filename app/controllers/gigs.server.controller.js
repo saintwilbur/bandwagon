@@ -45,7 +45,7 @@ exports.create = function(req, res) {
 };
 
 exports.findGig = function(req, res) {
-    console.log('FIND GAG: ');
+    console.log('FIND GIG: ');
     console.log(req.body);
     var gig = req.body;
     var user = req.user;
@@ -61,10 +61,10 @@ exports.findGig = function(req, res) {
         for (var i = 0; i < gigs.length; i++) {
             user.gigs.push(gigs[i]);
             user.save();
-            console.log('ADD GAG TO USER ID ARRAY OF GAGS: ', user.gigs);
+            console.log('ADD GIG TO USER ID ARRAY OF GIGS: ', user.gigs);
             gigs[i].users.push(user);
             gigs[i].save();
-            console.log('ADD USER TO GAG ID ARRAY OF USERS: ', gigs[i].users);
+            console.log('ADD USER TO GIG ID ARRAY OF USERS: ', gigs[i].users);
         }
     });
     res.jsonp(gig);
