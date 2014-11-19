@@ -9,10 +9,11 @@ var _ = require('lodash'),
     passport = require('passport'),
     qs = require('querystring'),
     https = require('https'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    request = require('request');
 
 var soundcloud = {
-    host_api : 'api.soundcloud.com',
+    host_api : 'https://api.soundcloud.com',
     host_connect : 'https://soundcloud.com/connect'
     //access_token : users.
 };
@@ -154,4 +155,32 @@ exports.apiRequest = function(data, callback) {
     return _setupRequest(data, callback);
 };
 
+exports.apiReq = function(req, res) {
+    // /users/{id}/followings
+    // Set the headers
+    var headers = {
+        'User-Agent':       'Super Agent/0.0.1',
+        'Content-Type':     'application/x-www-form-urlencoded'
+    };
+
+// Configure the request
+    var options = {
+        url: soundcloud.host_api + '/users/36597430/favorites.json?client_id=e4e0fdb81cf9639598a43f9071cd48c1',
+        method: 'GET',
+        headers: headers
+    };
+
+// Start the request
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+
+            //acess body by converting to json object, JSON.parse(body)
+            res.send(body);
+        } else {
+            console.log('nope!', error);
+        }
+
+    });
+
+};
 
