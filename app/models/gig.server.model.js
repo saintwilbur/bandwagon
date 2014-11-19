@@ -17,8 +17,11 @@ var validateLocalStrategyProperty = function(property) {
  * Gig Schema
  */
 var GigSchema = new Schema({
-	_uid: Number,
-    gigName: {
+	artist: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Artist'
+	},
+    name: {
         type: String,
         trim: true,
         default: 'Gig',
@@ -49,7 +52,7 @@ var GigSchema = new Schema({
 		city: String,
 		region: String,
 		country: String,
-		venueName: String
+		name: String
 	},
 	location: {
 		latitude: String,

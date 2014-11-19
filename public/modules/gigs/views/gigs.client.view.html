@@ -1,14 +1,33 @@
 <section data-ng-controller="GigsController">
-    <div class="row" style="margin-top: 50px" data-ng-show="authentication.user">
-        <div>
-            <center><h1><small>Calendar</small></h1></center>
+	<div class="row" style="margin-top: 50px" data-ng-show="authentication.user">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h1>Calendar</h1>
+				<div>
+			</div>
 			<br>
-			<br>
-            <table>
-                <tr data-ng-repeat="gig in gigs" ng-init="gig.dateStr = ( gig.date | date:'MMMdd' )">
-                    <td>{{gig.dateStr}} &nbsp; | &nbsp; {{gig.gigName}} &nbsp; | &nbsp; {{gig.venue.city}}, {{gig.venue.region}} &nbsp; | &nbsp; {{gig.venue.venueName}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="media" data-ng-repeat="gig in gigs">
+						<div class="pull-left">
+							<div class="text-center">
+								<div>{{gig.date | date:'MMM'}}</div>
+								<div>{{gig.date | date:'dd'}}</div>
+							</div>
+						</div>
+						<div class="media-body">
+							<p>
+								<span>{{gig.artist}}: {{gig.name}}</span>
+								<span class="pull-right">(calc. dist.)</span>
+							</p>
+							<p>
+								<span>in {{gig.venue.city}}, {{gig.venue.region}} at {{gig.venue.name}}</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
