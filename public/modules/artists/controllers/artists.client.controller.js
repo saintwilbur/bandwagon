@@ -12,6 +12,7 @@ angular.module('artists').controller('ArtistsController', ['$scope', '$http', '$
 
 
 
+        /*
         $scope.add = function() {
             console.log('scope: ', $scope);
             //$scope.details.addedBy = Authentication.user._id;
@@ -25,16 +26,20 @@ angular.module('artists').controller('ArtistsController', ['$scope', '$http', '$
                     $scope.error = response.message;
             });
         };
+        */
             //the id doesn't do anything, but it breaks when I remove so fuck it.
         $scope.get = function() {
             $http.get('/art/get', {'id' : '008'}).success(function(res) {
                 console.log('get success: ', res);
                 $scope.artists = res;
+                console.log("RES", res);
+               // $scope.artistNames = res;
             }).error(function(res) {
                 console.log('get error: ', res);
             });
         };
         $scope.get();
+
         /*
         $scope.get = function() {
             console.log('get scope: ', $scope);

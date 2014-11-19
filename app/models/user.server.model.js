@@ -97,6 +97,7 @@ var UserSchema = new Schema({
   	resetPasswordExpires: {
   		type: Date
   	},
+    artistNames: [],
 
     //integrations:
     soundcloud: {}
