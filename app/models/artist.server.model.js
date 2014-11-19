@@ -17,21 +17,19 @@ var validateLocalStrategyProperty = function(property) {
  * Artist Schema
  */
 var ArtistSchema = new Schema({
+    _uid: Number,
     artistName: {
         type: String,
         trim: true,
-        default: '',
+        default: 'Artist',
         validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
     },
-    addedBy: {
-        type: String,
-        trim: true,
-        default: '',
-        validate: [validateLocalStrategyProperty, 'No username']
-    },
+    users: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    }],
     provider: {
-        type: String,
-        required: 'Provider is required'
+        type: String
     },
     providerData: {},
     additionalProvidersData: {},
