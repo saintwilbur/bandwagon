@@ -25,7 +25,7 @@ describe('User Model Unit Tests:', function() {
 			username: 'username',
 			password: 'password',
 			areacode: '12345',
-			distance: '1'
+			distance: '1',
 			provider: 'local'
 		});
 		user2 = new User({

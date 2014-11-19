@@ -15,7 +15,7 @@ var _ = require('lodash'),
 exports.create = function(req, res) {
     console.log('Artist create');
     // Init Variables
-    var artist = new Artist(req.body);
+    var artist = new Artist(req.artistName);
     var message = null;
 
     artist.provider = 'local';
@@ -26,9 +26,9 @@ exports.create = function(req, res) {
             console.log(err);
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
-                //message: 'feet'
             });
-        } else {
+        }
+        //else {
             //console.log('artist.save ', artist);
             /*
             req.login(artist, function(err) {
@@ -39,9 +39,27 @@ exports.create = function(req, res) {
                 }
             });
             */
-            res.jsonp(artist);
+            //res.jsonp(artist);
+        //}
+    });
+};
+
+exports.addArtist = function(req, res) {
+    var artist = req.artistName;
+    Artist.find({artistName: artist}, function(err, result) {
+        //artist exists!
+        if (result.length) {
+            res('Artist exists', null);
+        } else {
+            Artist.save(function(err) {
+                res(err, artist);
+            });
         }
     });
+};
+
+exports.getUserArtist = function(req, res) {
+    var user = req.user;
 };
 
 exports.findArtist = function(req, res) {
@@ -85,14 +103,15 @@ exports.get = function(req, res) {
      next();
      });
 
-    */
+
      Artist.find({users: user}, function(err, artists) {
      if (err) {
         res.send(err);
      }
-
-     res.jsonp(artists);
-     });
+     */
+    console.log('artists: ', user.artistNames);
+    res.jsonp(user.artistNames);
+     //});
 
 };
 
