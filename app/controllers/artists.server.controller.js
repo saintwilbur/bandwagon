@@ -15,8 +15,7 @@ var _ = require('lodash'),
 exports.create = function(req, res) {
     console.log('Artist create');
     // Init Variables
-    //var artist = new Artist(req.body);
-    var artist = new Artist(req.body);
+    var artist = new Artist(req.artistName);
     var message = null;
 
     artist.provider = 'local';
@@ -27,9 +26,9 @@ exports.create = function(req, res) {
             console.log(err);
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
-                //message: 'feet'
             });
-        } else {
+        }
+        //else {
             //console.log('artist.save ', artist);
             /*
             req.login(artist, function(err) {
@@ -40,16 +39,61 @@ exports.create = function(req, res) {
                 }
             });
             */
-            res.jsonp(artist);
+            //res.jsonp(artist);
+        //}
+    });
+};
+
+exports.addArtist = function(req, res) {
+    var artist = req.artistName;
+    Artist.find({artistName: artist}, function(err, result) {
+        //artist exists!
+        if (result.length) {
+            res('Artist exists', null);
+        } else {
+            Artist.save(function(err) {
+                res(err, artist);
+            });
         }
     });
+};
+
+exports.getUserArtist = function(req, res) {
+    var user = req.user;
+};
+
+exports.findArtist = function(req, res) {
+    console.log('FIND ARTIST: ');
+    console.log(req.body);
+    var artist = req.body;
+    var user = req.user;
+
+    //finds all artists with the name and adds them to the artists array of users
+    Artist.find({artistName: artist.artistName, users: {$nin: [user]}}, function(err, artists) {
+        if (err) {
+           res.send(err);
+        }
+
+        console.log(artists);
+
+        for (var i = 0; i < artists.length; i++) {
+            user.artists.push(artists[i]);
+            user.save();
+            console.log('ADD ARTIST TO USER ID ARRAY OF ARTISTS: ', user.artists);
+            artists[i].users.push(user);
+            artists[i].save();
+            console.log('ADD USER TO ARTIST ID ARRAY OF USERS: ', artists[i].users);
+        }
+    });
+    res.jsonp(artist);
 };
 
 /**
  * Get Artists by UserID
  */
 exports.get = function(req, res) {
-    console.log('GET ARTISTS BY USER ID: ', req.user);
+    var user = req.user;
+    console.log('GET ARTISTS BY USER ID: ', user);
     /*
     Artist.findOne({
      addedBy: id
@@ -59,14 +103,15 @@ exports.get = function(req, res) {
      next();
      });
 
-    */
-     Artist.find(function(err, artists) {
+
+     Artist.find({users: user}, function(err, artists) {
      if (err) {
         res.send(err);
      }
-
-     res.jsonp(artists);
-     });
+     */
+    console.log('artists: ', user.artistNames);
+    res.jsonp(user.artistNames);
+     //});
 
 };
 

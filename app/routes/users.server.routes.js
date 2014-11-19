@@ -56,14 +56,11 @@ module.exports = function(app) {
     app.route('/auth/soundcloud').get(passport.authenticate('soundcloud'));
     app.route('/auth/soundcloud/callback').get(users.oauthCallback('soundcloud'));
 
-/*
-    app.get('/auth/soundcloud/callback',
-        passport.authenticate('soundcloud', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
-*/
+    //spotify api
+    app.route('/auth/spotify').get(passport.authenticate('spotify', {scope: ['user-library-read']} ));
+    app.route('/auth/spotify/callback').get(users.oauthCallback('spotify'));
+
+    app.route('/test/apiRequest').get(users.apiReq);
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

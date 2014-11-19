@@ -7,7 +7,8 @@ var passport = require('passport'),
     url = require('url'),
     SoundCloudStrategy = require('passport-soundcloud').Strategy,
     config = require('../config'),
-    users = require('../../app/controllers/users');
+    users = require('../../app/controllers/users'),
+    artists = require('../../app/controllers/artists');
 
 module.exports = function(){
     //use soundcloud strategy
@@ -37,18 +38,40 @@ module.exports = function(){
                 providerData: providerData
             };
             var requestData = {};
-            requestData.access_token = accessToken;
-            requestData.host_api = 'https://api.soundcloud.com';
-            requestData.method = 'GET';
-            requestData.path = '/users/' + profile.id + '/followings';
-            //todo: scrub this, scrub.
-            requestData.params = {clientID: 'e4e0fdb81cf9639598a43f9071cd48c1'};
-            //console.log('req: ', req);
-            //console.log('nice!');
-            //console.log("setup providerUserProfile");
-            //return done(null, profile, accessToken, refreshToken);
-            users.apiRequest(requestData, done);
-            //users.saveOAuthUserProfile(req, providerUserProfile, done);
+            //requestData.access_token = accessToken;
+            requestData.options = {
+                url: 'https://api.soundcloud.com/users/' + profile.id + '/favorites.json?client_id=e4e0fdb81cf9639598a43f9071cd48c1',
+                method: 'GET',
+                headers: {
+                    'User-Agent': 'Super Agent/0.0.1',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            };
+            users.apiReq(requestData, function(tracks) {
+                //console.log('TRACKS: ', tracks);
+
+                tracks.forEach(function(entry) {
+                    console.log(entry.user.username);
+                    req.artistName = entry.user.username;
+                    var user = req.user;
+                    if (!user.artistNames) {
+                        user.artistNames = {};
+                    }
+                    //console.log('ENTRY[]', user.artistNames[entry.user.username]);
+                    if (user.artistNames.indexOf(entry.user.username) < 0) {
+                        user.artistNames.push(entry.user.username);
+                        user.markModified('artistNames');
+                        user.save(function(err) {
+                        console.log(err);
+                    });
+                    }
+
+                    //users.findArtist()
+                    //artists.addArtist({artist})
+                });
+
+            });
+            users.saveOAuthUserProfile(req, providerUserProfile, done);
             //console.log(users.me());
             //return done(null, profile);
             //var SC = require('integrations');

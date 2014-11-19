@@ -14,19 +14,27 @@ var validateLocalStrategyProperty = function(property) {
 };
 
 /**
- * Artist Schema
+ * Gig Schema
  */
-var ArtistSchema = new Schema({
-    _uid: Number,
-    artistName: {
+var GigSchema = new Schema({
+	artist: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Artist'
+	},
+    name: {
         type: String,
         trim: true,
-        default: 'Artist',
+        default: 'Gig',
         validate: [validateLocalStrategyProperty, 'Please fill in valid artist name']
     },
     users: [{
         type: mongoose.Schema.ObjectId,
         ref: 'User'
+        /*artist_uid: Number,
+        status: {
+            type: String,
+            enum: ['tracking', 'watching']
+        }*/
     }],
     provider: {
         type: String
@@ -36,10 +44,24 @@ var ArtistSchema = new Schema({
     updated: {
         type: Date
     },
+	date: {
+        type: Date,
+        default: Date.now
+    },
+	venue: {
+		city: String,
+		region: String,
+		country: String,
+		name: String
+	},
+	location: {
+		latitude: String,
+		longitude: String
+	},
     created: {
         type: Date,
         default: Date.now
     }
 });
 
-mongoose.model('Artist', ArtistSchema);
+mongoose.model('Gig', GigSchema);

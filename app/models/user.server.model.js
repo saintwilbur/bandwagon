@@ -25,6 +25,7 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
+	_uid: Number,
 	firstName: {
 		type: String,
 		trim: true,
@@ -36,10 +37,6 @@ var UserSchema = new Schema({
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-	},
-	displayName: {
-		type: String,
-		trim: true
 	},
 	email: {
 		type: String,
@@ -59,15 +56,39 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
+	defaultDistance: Number,
+	locations: [{
+		latitude: String,
+		longitude: String,
+		locationName: String,
+		distance: Number
+	}],
+	artists: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Artist'
+		/*artist_uid: Number,
+		status: {
+			type: String,
+			enum: ['tracking', 'watching']
+		}*/
+	}],
+	gigs: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Gig'
+		/*artist_uid: Number,
+		status: {
+			type: String,
+			enum: ['tracking', 'watching']
+		}*/
+	}],
+	gigList_uid: Number,
 	salt: {
 		type: String
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
 	},
 	providerData: {},
-    //Needed for integrations
 	additionalProvidersData: {},
 	roles: {
 		type: [{
@@ -90,6 +111,7 @@ var UserSchema = new Schema({
   	resetPasswordExpires: {
   		type: Date
   	},
+    artistNames: [],
 
     //integrations:
     soundcloud: {}

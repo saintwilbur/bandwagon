@@ -1,0 +1,28 @@
+<section data-ng-controller="GigsController">
+	<div class="row" style="margin-top: 50px" data-ng-show="authentication.user">
+		<div class="container">
+				<h2>Calendar</h1>
+			<br>
+			<div>
+				<div class="media" data-ng-repeat="gig in gigs | orderBy:date">
+					<div style="padding: 5px; background-color: #ebebeb;">
+						<div style="height: 100px; padding: 5px; border-style: solid; border-width: 2px; color: #2b3e50; border-color: #2b3e50;">
+							<div class="pull-left" style="padding-right: 10px; border-right: 2px solid #2b3e50">
+								<div class="text-center" style="padding-top: 2px; width:80px">
+									<span style="line-height: 1; font-weight: 600; font-size: 20px;">{{gig.date | date:'MMM'}}</span>
+									<span style="line-height: 1; font-weight: 900; font-size: 60px">{{gig.date | date:'dd'}}</span>
+								</div>
+							</div>
+							<div class="media-body" style="padding-left: 15px; padding-top: 14px">
+								<span style="font-weight: 400; font-size: 17px">Andrij Dobriansky{{gig.artist}} &nbsp; - &nbsp; {{gig.name}}</span>
+								<span class="pull-right" style="padding-right: 15px">(calc. dist.)</span>
+								<br>
+								<div style="padding-left: 15px; padding-top: 15px"> <i>in</i> &nbsp; <span style="font-weight: 400">{{gig.venue.city}}, {{gig.venue.region}}</span> &nbsp; <i>at</i> &nbsp; <span style="font-weight: 400">{{gig.venue.name}}</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
