@@ -39,6 +39,19 @@ var ArtistSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
+    },
+    seatgeek: {
+        slug: {
+            type: String
+        },
+        id:  {
+            type: String
+        }
+    },
+    songkick: {
+        id: {
+            type: String
+        }
     }
 });
 
