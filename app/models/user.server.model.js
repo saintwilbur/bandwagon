@@ -38,6 +38,10 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
 	},
+	displayName: {
+		type: String,
+		trim: true
+	},
 	email: {
 		type: String,
 		trim: true,
@@ -57,6 +61,10 @@ var UserSchema = new Schema({
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
 	defaultDistance: Number,
+	location: {
+		type: String,
+		trim: true
+	},
 	locations: [{
 		latitude: String,
 		longitude: String,
