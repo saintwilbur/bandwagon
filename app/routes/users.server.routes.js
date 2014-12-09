@@ -60,6 +60,9 @@ module.exports = function(app) {
     app.route('/auth/spotify').get(passport.authenticate('spotify', {scope: ['user-library-read']} ));
     app.route('/auth/spotify/callback').get(users.oauthCallback('spotify'));
 
+    //remove integration
+    app.route('/users/accounts').delete(users.removeOAuthProvider);
+
     app.route('/test/apiRequest').get(users.apiReq);
 
 	// Finish by binding the user middleware
