@@ -3,6 +3,7 @@ exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: [
   	'homepage.js', 
+    'routesSpec.js',
   	'signup.js',
   	'signin.js',
   	],
