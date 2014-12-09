@@ -10,12 +10,88 @@ var _ = require('lodash'),
     qs = require('querystring'),
     https = require('https'),
     User = mongoose.model('User'),
-    request = require('request');
+    request = require('request'),
+	users = require('../users');
 
 var soundcloud = {
     host_api : 'https://api.soundcloud.com',
     host_connect : 'https://soundcloud.com/connect'
     //access_token : users.
+};
+
+exports.apiReqSoundcloud = function(req, res) {
+
+	var id = req.user.additionalProvidersData.spotify.profile.id;
+
+    var requestData = {};
+	requestData.options = {
+		url: 'https://api.soundcloud.com/users/' + id + '/favorites.json?client_id=e4e0fdb81cf9639598a43f9071cd48c1',
+		method: 'GET',
+		headers: {
+			'User-Agent': 'Super Agent/0.0.1',
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	};
+	users.apiReq(requestData, function(tracks) {
+		//console.log('TRACKS: ', tracks);
+
+		tracks.items.forEach(function(entry) {
+			entry.track.artists.forEach(function(artist) {
+				console.log('Spotify Artists: ', artist.name);
+				req.artistName = artist.name;
+				var user = req.user;
+				if (!user.artistNames) {
+					user.artistNames = {};
+				}
+				if (user.artistNames.indexOf(artist.name) < 0) {
+					user.artistNames.push(artist.name);
+					user.markModified('artistNames');
+					user.save(function(err) {
+						console.log(err);
+					});
+				}
+			});
+		});
+	});
+};
+
+exports.apiReqSpotify = function(req, res) {
+
+	var accessToken = req.user.additionalProvidersData.spotify.accessToken;
+
+    var requestData = {};
+	requestData.options = {
+		//url: 'https://api.spotify.com/v1/me' + profile.id + '/tracks',
+		url: 'https://api.spotify.com/v1/me/tracks',
+		method: 'GET',
+		headers: {
+			'User-Agent': 'Super Agent/0.0.1',
+			'Content-Type': 'application/x-www-form-urlencoded',
+			json: true,
+			'Authorization': 'Bearer ' + accessToken
+		}
+	};
+	users.apiReq(requestData, function(tracks) {
+		//console.log('TRACKS: ', tracks);
+
+		tracks.items.forEach(function(entry) {
+			entry.track.artists.forEach(function(artist) {
+				console.log('Spotify Artists: ', artist.name);
+				req.artistName = artist.name;
+				var user = req.user;
+				if (!user.artistNames) {
+					user.artistNames = {};
+				}
+				if (user.artistNames.indexOf(artist.name) < 0) {
+					user.artistNames.push(artist.name);
+					user.markModified('artistNames');
+					user.save(function(err) {
+						console.log(err);
+					});
+				}
+			});
+		});
+	});
 };
 
 exports.apiReq = function(req, res) {
@@ -44,7 +120,7 @@ exports.apiReq = function(req, res) {
             //console.log(res);
             res(JSON.parse(body));
         } else {
-            console.log('API REQUEST FAILED: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', error, response, body);
+            console.log('API REQUEST FAILED: ~~~~~~~~~~~~~~~~~~~~~~~~~~', error, response, body);
         }
     });
 

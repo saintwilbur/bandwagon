@@ -55,9 +55,8 @@ module.exports = function(){
             //requestData.params = {clientID: 'c98d620cd0c741848904b2746d822fc5'};
 			
             users.saveOAuthUserProfile(req, providerUserProfile, done);
-            /*users.apiReq(requestData, function(res){
-				console.log('results==========================================================================:', res);
-			});*/
+			
+			// This apiReq functionality is duplicated in users.integrations.server.controller.js
             users.apiReq(requestData, function(tracks) {
                 //console.log('TRACKS: ', tracks);
 
@@ -77,23 +76,6 @@ module.exports = function(){
 							});
 						}
 					});
-					/* req.artistName = 
-                    req.artistName = entry.user.username;
-                    var user = req.user;
-                    if (!user.artistNames) {
-                        user.artistNames = {};
-                    }
-                    //console.log('ENTRY[]', user.artistNames[entry.user.username]);
-                    if (user.artistNames.indexOf(entry.user.username) < 0) {
-                        user.artistNames.push(entry.user.username);
-                        user.markModified('artistNames');
-                        user.save(function(err) {
-                        console.log(err);
-                    });
-                    }*/
-
-                    //users.findArtist()
-                    //artists.addArtist({artist})
                 });
 			});
 
