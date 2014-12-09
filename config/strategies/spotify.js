@@ -39,20 +39,45 @@ module.exports = function(){
 
             var requestData = {};
             requestData.options = {
-                url: 'https://api.spotify.com/v1/me' + profile.id + '/tracks',
+                //url: 'https://api.spotify.com/v1/me' + profile.id + '/tracks',
+				url: 'https://api.spotify.com/v1/me/tracks',
                 method: 'GET',
                 headers: {
                     'User-Agent': 'Super Agent/0.0.1',
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    headers: { 'Authorization': 'Bearer ' + accessToken },
-                    json: true
+                    json: true,
+                    'Authorization': 'Bearer ' + accessToken
                 }
             };
+			
+			
             //todo: scrub this, scrub.
             //requestData.params = {clientID: 'c98d620cd0c741848904b2746d822fc5'};
-
+			
             users.saveOAuthUserProfile(req, providerUserProfile, done);
-            users.apiReq(requestData, done);
+			
+			// This apiReq functionality is duplicated in users.integrations.server.controller.js
+            users.apiReq(requestData, function(tracks) {
+                //console.log('TRACKS: ', tracks);
+
+                tracks.items.forEach(function(entry) {
+					entry.track.artists.forEach(function(artist) {
+						console.log('Spotify Artists: ', artist.name);
+						req.artistName = artist.name;
+						var user = req.user;
+						if (!user.artistNames) {
+							user.artistNames = {};
+						}
+						if (user.artistNames.indexOf(artist.name) < 0) {
+							user.artistNames.push(artist.name);
+							user.markModified('artistNames');
+							user.save(function(err) {
+								console.log(err);
+							});
+						}
+					});
+                });
+			});
 
         }
     ));

@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/artists" class="navbar-brand">bandwagon.me</a>
+		<a href="/#!/gigs" class="navbar-brand">bandwagon.me</a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
@@ -23,7 +23,16 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
+	<!--	<a class="navbar-right" href="/#!/gigs" class="navbar-brand"><span style="font-size: 80%">My Calendar</span></a> -->
+	<!--	<a class="navbar-right" href="/#!/artists" class="navbar-brand"><span style="font-size: 80%">My Artists</span></a> -->
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+			<li ui-route="/gigs" ng-class="{active: $uiRoute}">
+				<a href="/#!/gigs">My Calendar</a>
+			</li>
+			<li class="divider-vertical"></li>
+			<li ui-route="/artists" ng-class="{active: $uiRoute}">
+				<a href="/#!/artists">My Artists</a>
+			</li>
 			<li class="dropdown">
 				<a href="#" id="droptoggle" class="dropdown-toggle" data-toggle="dropdown">
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
@@ -34,9 +43,6 @@
 					</li>
 					<li>
 						<a href="/#!/integrations">Manage Music Accounts</a>
-					</li>
-					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
 					</li>
 					<li data-ng-show="authentication.user.provider === 'local'">
 						<a href="/#!/settings/password">Change Password</a>

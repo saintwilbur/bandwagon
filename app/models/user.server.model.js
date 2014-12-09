@@ -38,6 +38,10 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
 	},
+	displayName: {
+		type: String,
+		trim: true
+	},
 	email: {
 		type: String,
 		trim: true,
@@ -57,6 +61,10 @@ var UserSchema = new Schema({
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
 	defaultDistance: Number,
+	location: {
+		type: String,
+		trim: true
+	},
 	locations: [{
 		latitude: String,
 		longitude: String,
@@ -66,7 +74,22 @@ var UserSchema = new Schema({
 	artists: [{
 		type: mongoose.Schema.ObjectId,
 		ref: 'Artist'
+		/*artist_uid: Number,
+		status: {
+			type: String,
+			enum: ['tracking', 'watching']
+		}*/
 	}],
+	gigs: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Gig'
+		/*artist_uid: Number,
+		status: {
+			type: String,
+			enum: ['tracking', 'watching']
+		}*/
+	}],
+	gigList_uid: Number,
 	salt: {
 		type: String
 	},
@@ -74,7 +97,6 @@ var UserSchema = new Schema({
 		type: String,
 	},
 	providerData: {},
-    //Needed for integrations
 	additionalProvidersData: {},
 	roles: {
 		type: [{

@@ -1,45 +1,40 @@
 'use strict';
 
-angular.module('artists').controller('ArtistsController', ['$scope', '$http', '$location', 'Authentication',
+angular.module('gigs').controller('GigsController', ['$scope', '$http', '$location', 'Authentication',
 	function($scope, $http, $location, Authentication) {
 		// Controller Logic
         console.log(' Authentication:',  Authentication);
 
         $scope.authentication = Authentication;
 
-        console.log('ARTIST SCOPE: ', $scope);
+        console.log('GIG SCOPE: ', $scope);
         if (!$scope.authentication.user) $location.path('/');
 
 
 
-        /*
         $scope.add = function() {
             console.log('scope: ', $scope);
             //$scope.details.addedBy = Authentication.user._id;
 
-            $http.post('/art/add', $scope.details).success(function(response) {
+            $http.post('/ga/add', $scope.details).success(function(response) {
                 //
-                //console.log('artist client controller add response', response);
+                //console.log('gig client controller add response', response);
                 $scope.get();
             }).error(function(response) {
-                //console.log('artist client controller add response', response);
+                //console.log('gig client controller add response', response);
                     $scope.error = response.message;
             });
         };
-        */
             //the id doesn't do anything, but it breaks when I remove so fuck it.
         $scope.get = function() {
-            $http.get('/art/get', {'id' : '008'}).success(function(res) {
+            $http.get('/ga/get', {'id' : '008'}).success(function(res) {
                 console.log('get success: ', res);
-                $scope.artists = res;
-                console.log('RES', res);
-               // $scope.artistNames = res;
+                $scope.gigs = res;
             }).error(function(res) {
                 console.log('get error: ', res);
             });
         };
         $scope.get();
-
         /*
         $scope.get = function() {
             console.log('get scope: ', $scope);
