@@ -6,6 +6,7 @@ exports.config = {
   	'signup.js',
   	'signin.js',
     'routesSpec.js',
+    'navBar.js',
   	],
  /*
   multiCapabilities: [{
