@@ -7,7 +7,8 @@ var passport = require('passport'),
     url = require('url'),
     SoundCloudStrategy = require('passport-soundcloud').Strategy,
     config = require('../config'),
-    users = require('../../app/controllers/users');
+    users = require('../../app/controllers/users'),
+    artists = require('../../app/controllers/artists');
 
 module.exports = function(){
     //use soundcloud strategy
@@ -51,7 +52,22 @@ module.exports = function(){
 
                 tracks.forEach(function(entry) {
                     console.log(entry.user.username);
+                    req.artistName = entry.user.username;
+                    var user = req.user;
+                    if (!user.artistNames) {
+                        user.artistNames = {};
+                    }
+                    //console.log('ENTRY[]', user.artistNames[entry.user.username]);
+                    if (user.artistNames.indexOf(entry.user.username) < 0) {
+                        user.artistNames.push(entry.user.username);
+                        user.markModified('artistNames');
+                        user.save(function(err) {
+                        console.log(err);
+                    });
+                    }
+
                     //users.findArtist()
+                    //artists.addArtist({artist})
                 });
 
             });
