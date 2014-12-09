@@ -36,6 +36,10 @@ var GigSchema = new Schema({
             enum: ['tracking', 'watching']
         }*/
     }],
+	gigs: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Gig'
+	}],
     provider: {
         type: String
     },

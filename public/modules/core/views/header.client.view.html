@@ -23,8 +23,9 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
-		
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+			<a href="/#!/gigs" class="navbar-brand"><span style="font-size: 80%">My Calendar</span></a>
+			<a href="/#!/artists" class="navbar-brand"><span style="font-size: 80%">My Artists</span></a>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
