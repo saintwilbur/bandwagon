@@ -39,13 +39,12 @@ exports.apiReq = function(req, res) {
 // Start the request
     request(req.options, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-
             //acess body by converting to json object, JSON.parse(body)
             //res.send(body);
             //console.log(res);
             res(JSON.parse(body));
         } else {
-            console.log('nope!', error);
+            console.log('API REQUEST FAILED: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', error, response, body);
         }
     });
 
