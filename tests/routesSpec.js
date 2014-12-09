@@ -9,15 +9,16 @@ describe('E2E: Testing Routes', function() {
   var droptoggle = element(by.id('droptoggle'));
   var signout = element(by.id('signout'));
 
-  function signin() {
+  // Function signin so that we can test routes only seen when logged in
+  function signin(){
     browser.get('http://localhost:3000/#!/signin');
-    username.sendKeys('kbooras');
-    password.sendKeys('java123');
+    username.sendKeys('ThisNewUser');
+    password.sendKeys('password');
     submit.click();
   }
 
   beforeEach(function() {
-    browser.get('http://localhost:3000/#/');
+    browser.get('http://localhost:3000/#!/');
   });
 
   it('should jump to the / path when /gigs is accessed and user is not logged in', function() {
