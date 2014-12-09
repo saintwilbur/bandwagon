@@ -7,6 +7,7 @@ describe('angularjs homepage', function() {
 	var password = element(by.id('password'));
 	var submit = element(by.id('submit'));
 	var error = element(by.binding('error'));
+	var droptoggle = element(by.id('droptoggle'));
 	var signout = element(by.id('signout'));
 
 	function createUser(a, b, c, d, e){
@@ -98,6 +99,7 @@ describe('angularjs homepage', function() {
 
   it('creates a newuser', function() {
   	createUser('ThisNewUser', 'ThisNewUser', 'ThisNewUser@ThisNewUser.com', 'ThisNewUser', 'password');
+  	droptoggle.click();
   	signout.click();
   });
 
