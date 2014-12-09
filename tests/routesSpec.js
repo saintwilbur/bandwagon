@@ -17,7 +17,7 @@ describe('E2E: Testing Routes', function() {
   }
 
   beforeEach(function() {
-    browser.get('/#!/');
+    browser.get('http://localhost:3000/#/');
   });
 
   it('should jump to the / path when /gigs is accessed and user is not logged in', function() {
