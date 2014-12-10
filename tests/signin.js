@@ -30,14 +30,21 @@ describe('angularjs homepage', function() {
  	});	
 
 	it('should fail with incorrect password', function() {	
-		username.sendKeys('ThisNewUser');
+		username.sendKeys('test');
 		password.sendKeys('banana');
 		submit.click();
     	expect(error.getText()).toEqual('Invalid password'); 
   	});	
 
+  	it('should fail with unrecognized user', function() {	
+		username.sendKeys('banana');
+		password.sendKeys('password');
+		submit.click();
+    	expect(error.getText()).toEqual('Unknown user'); 
+  	});	
+
   	it('should login with correct credentials', function() {	
-		username.sendKeys('ThisNewUser');
+		username.sendKeys('test');
 		password.sendKeys('password');
 		submit.click();
 		droptoggle.click();

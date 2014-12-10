@@ -10,14 +10,14 @@ describe('test navBar', function() {
 	var editProfile = element(by.id('editProfile'));
 	var manageMusic = element(by.id('manageMusic'));
 	var changePassword = element(by.id('changePassword'));
+	var deleteAccount = element(by.id('deleteAccount'));
 	var signout = element(by.id('signout'));
 
 	function signin() {
 		browser.get('http://localhost:3000/#!/signin');
-		username.sendKeys('ThisNewUser');
+		username.sendKeys('test');
 		password.sendKeys('password');
 		submit.click();
-		droptoggle.click();
 	}
 
 	beforeEach(function() {
@@ -51,11 +51,18 @@ describe('test navBar', function() {
 		droptoggle.click();
 		changePassword.click();
 		expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#!/settings/password');
-  	});	
+  	});
+
+  	it('Delete account button should load /settings/deleteAccount', function() {	
+		droptoggle.click();
+		deleteAccount.click();
+		expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#!/settings/deleteAccount');
+  	});
 
   	it('Signout button should redirect to home', function() {	
 		droptoggle.click();
 		signout.click();
 		expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#!/');
   	});	
+
 });

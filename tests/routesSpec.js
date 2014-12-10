@@ -1,5 +1,5 @@
 //
-// test/e2e/routesSpec.js
+// test/routesSpec.js
 //
 describe('E2E: Testing Routes', function() {
   var username = element(by.id('username'));
@@ -7,12 +7,13 @@ describe('E2E: Testing Routes', function() {
   var submit = element(by.id('submit'));
   var error = element(by.binding('error'));
   var droptoggle = element(by.id('droptoggle'));
+  var deleteAccount = element(by.id('deleteAccount'));
   var signout = element(by.id('signout'));
 
   // Function signin so that we can test routes only seen when logged in
   function signin(){
     browser.get('http://localhost:3000/#!/signin');
-    username.sendKeys('ThisNewUser');
+    username.sendKeys('test');
     password.sendKeys('password');
     submit.click();
   }
@@ -62,6 +63,11 @@ describe('E2E: Testing Routes', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#!/settings/password');
     droptoggle.click();
     signout.click();
+  });
+
+  it('should have a working /settings/deleteAccount route', function() {
+    browser.get('http://localhost:3000/#!/settings/deleteAccount');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#!/settings/deleteAccount');
   });
 
 });
