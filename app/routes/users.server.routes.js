@@ -66,6 +66,10 @@ module.exports = function(app) {
 
     app.route('/test/apiRequest').get(users.apiReq);
 
+    //test integration
+    //app.get('/mock/login', passport.authenticate('passport-mock'));
+    //app.route('/mock/login').get(passport.authenticate('mock'));
+
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
 };

@@ -159,7 +159,7 @@ exports.getArtistSeatGeek = function(req, res) {
 
     sk.artist.search(artistName, {page: 1, per_page: 25}, function(r) {
         console.log('R-----------'+artistName, r.resultsPage.results.artist[0]);
-        r.resultsPage.results.artist.forEach()
+        //r.resultsPage.results.artist.forEach()
     });
     /*
     sk.artist.all({page: 1}, function(r) {console.log(r);});
