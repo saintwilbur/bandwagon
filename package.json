@@ -33,6 +33,11 @@
 		"passport-linkedin": "~0.1.3",
 		"passport-google-oauth": "~0.1.5",
 		"passport-github": "~0.1.5",
+		"passport-soundcloud": "~0.1.2",
+		"passport-spotify": "~0.1.0",
+		"node-songkick": "~0.2.1",
+		"request": "~2.48.0",
+		"seatgeek": "~0.3.8",
 		"lodash": "~2.4.1",
 		"forever": "~0.11.0",
 		"bower": "~1.3.8",
@@ -62,6 +67,7 @@
 		"karma-coverage": "~0.2.0",
 		"karma-chrome-launcher": "~0.1.2",
 		"karma-firefox-launcher": "~0.1.3",
+		"protractor":"~1.5.0",
 		"karma-phantomjs-launcher": "~0.1.2"
 	}
 }
