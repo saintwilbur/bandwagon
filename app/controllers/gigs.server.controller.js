@@ -86,10 +86,12 @@ exports.get = function(req, res) {
      });
 
     */
-     Gig.find({users: user}, function(err, gigs) {
+     Gig.find({users: user, city: user.location}, function(err, gigs) {
      if (err) {
         res.send(err);
      }
+	 console.log('user.location-------------------------------------- ', user.location);
+	 console.log('list of gags yayyy-------------------------------------- ', gigs);
      res.jsonp(gigs);
      });
 

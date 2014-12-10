@@ -21,6 +21,10 @@ var GigSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Artist'
 	},
+	artistName: {
+		type: String,
+		trim: true
+	},
     name: {
         type: String,
         trim: true,
@@ -52,6 +56,10 @@ var GigSchema = new Schema({
         type: Date,
         default: Date.now
     },
+	city: {
+		type: String,
+		trim: true
+	},
 	venue: {
 		city: String,
 		region: String,
