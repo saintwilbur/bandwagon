@@ -70,6 +70,22 @@ exports.signin = function(req, res, next) {
 };
 
 /**
+ * Delete user account
+ */
+exports.deleteAccount = function(req, res) {
+	var user = req.user;
+	User.remove({username: user.username}, function(err, artists) {
+        if (err) {
+           res.send(err);
+        }
+        else {
+        	console.log('deleted user');
+        	res.redirect('/');
+        }
+    });
+};
+
+/**
  * Signout
  */
 exports.signout = function(req, res) {

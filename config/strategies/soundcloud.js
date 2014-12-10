@@ -51,18 +51,27 @@ module.exports = function(){
                 //console.log('TRACKS: ', tracks);
 
                 tracks.forEach(function(entry) {
-                    console.log(entry.user.username);
+                    console.log('entry.user.username', entry.user.username);
+
                     req.artistName = entry.user.username;
+
+
+                    artists.getArtistSeatGeek(entry.user.username);
+
                     var user = req.user;
                     if (!user.artistNames) {
                         user.artistNames = {};
                     }
                     //console.log('ENTRY[]', user.artistNames[entry.user.username]);
                     if (user.artistNames.indexOf(entry.user.username) < 0) {
+
+                        //get songkickid
+
+
                         user.artistNames.push(entry.user.username);
                         user.markModified('artistNames');
                         user.save(function(err) {
-                        console.log(err);
+                            console.log(err);
                     });
                     }
 

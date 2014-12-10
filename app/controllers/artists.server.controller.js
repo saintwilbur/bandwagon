@@ -8,6 +8,8 @@ var _ = require('lodash'),
     errorHandler = require('./errors'),
     mongoose = require('mongoose'),
     passport = require('passport'),
+    seatgeek = require('seatgeek'),
+    SongKick = require('node-songkick'),
     Artist = mongoose.model('Artist');
 /**
  * Create a Artist
@@ -58,10 +60,12 @@ exports.addArtist = function(req, res) {
     });
 };
 
+//this is incomplete....
 exports.getUserArtist = function(req, res) {
     var user = req.user;
 };
 
+//this is horribly named
 exports.findArtist = function(req, res) {
     console.log('FIND ARTIST: ');
     console.log(req.body);
@@ -89,7 +93,7 @@ exports.findArtist = function(req, res) {
 };
 
 /**
- * Get Artists by UserID
+ * Get Artists by User
  */
 exports.get = function(req, res) {
     var user = req.user;
@@ -143,7 +147,25 @@ exports.list = function(req, res) {
 
 };
 
+exports.getArtistSeatGeek = function(req, res) {
+    var artistName = req;
+    //seatgeek.performers(function(err, performers) {
+    //    if (err) return console.log(err);
+    //    console.log(performers);
+    //});
+    //badbad: plaintext api key
+    var sk = new SongKick('wzqh4iWAlzjnQovS');
+    console.log('artistname:', req);
 
+    sk.artist.search(artistName, {page: 1, per_page: 25}, function(r) {
+        console.log('R-----------'+artistName, r.resultsPage.results.artist[0]);
+        r.resultsPage.results.artist.forEach()
+    });
+    /*
+    sk.artist.all({page: 1}, function(r) {console.log(r);});
+    */
+
+};
 
 /**
  * User middleware

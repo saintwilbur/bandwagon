@@ -27,11 +27,11 @@
 	<!--	<a class="navbar-right" href="/#!/artists" class="navbar-brand"><span style="font-size: 80%">My Artists</span></a> -->
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
 			<li ui-route="/gigs" ng-class="{active: $uiRoute}">
-				<a href="/#!/gigs">My Calendar</a>
+				<a href="/#!/gigs" id="myCalendar">My Calendar</a>
 			</li>
 			<li class="divider-vertical"></li>
 			<li ui-route="/artists" ng-class="{active: $uiRoute}">
-				<a href="/#!/artists">My Artists</a>
+				<a href="/#!/artists" id="myArtists">My Artists</a>
 			</li>
 			<li class="dropdown">
 				<a href="#" id="droptoggle" class="dropdown-toggle" data-toggle="dropdown">
@@ -39,13 +39,16 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
+						<a href="/#!/settings/profile" id="editProfile">Edit Profile</a>
 					</li>
 					<li>
-						<a href="/#!/integrations">Manage Music Accounts</a>
+						<a href="/#!/integrations" id="manageMusic">Manage Music Accounts</a>
 					</li>
 					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
+						<a href="/#!/settings/password" id="changePassword">Change Password</a>
+					</li>
+					<li>
+						<a id="deleteAccount" href="/#!/settings/deleteAccount">Delete Account</a>
 					</li>
 					<li class="divider"></li>
 					<li>

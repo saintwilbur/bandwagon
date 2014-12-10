@@ -8,6 +8,7 @@ var _ = require('lodash'),
     errorHandler = require('./errors'),
     mongoose = require('mongoose'),
     passport = require('passport'),
+    seatgeek = require('seatgeek'),
     Gig = mongoose.model('Gig');
 /**
  * Create a Gig
@@ -44,6 +45,8 @@ exports.create = function(req, res) {
     });
 };
 
+
+
 exports.findGig = function(req, res) {
     console.log('FIND GIG: ');
     console.log(req.body);
@@ -69,6 +72,7 @@ exports.findGig = function(req, res) {
     });
     res.jsonp(gig);
 };
+
 
 /**
  * Get Gigs by UserID
