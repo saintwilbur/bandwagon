@@ -63,6 +63,17 @@ describe('Artist Model Unit Tests:', function() {
 			});
 		});
 
+		it('should not save artist that already exists', function(done) {
+			artist.save();
+				artist.save(function(err) {
+					var query = Artist.find({});
+					query.exec(function(err, result) {
+						result.should.have.length(1);
+						done();
+					});
+				});
+ 		});
+
 		it('should retrieve artist by name', function(done) {
 			artist.save(function(err) {
 				var query = Artist.findOne({'artistName' : artist.artistName});
@@ -85,6 +96,17 @@ describe('Artist Model Unit Tests:', function() {
 			});
 		});
 
+		it('artist array of users starts with zero users', function(done) {
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					var resultUsers = (result.users === undefined).should.be.false;
+					result.users.should.have.length(0);
+					done();
+				});
+			});
+		});
+
 		it('should add user to artist array of users without problems', function(done) {
 			artist.users.push(user);
 			artist.save(function(err) {
@@ -92,6 +114,19 @@ describe('Artist Model Unit Tests:', function() {
 				query.exec(function(err, result) {
 					var resultUsers = (result.users === undefined).should.be.false;
 					result.users.should.have.length(1);
+					done();
+				});
+			});
+		});
+
+		it('should not add user twice to artist array of users', function(done) {
+			artist.users.push(user);
+			artist.users.push(user);
+			artist.save(function(err) {
+				var query = Artist.findOne({'artistName' : artist.artistName});
+				query.exec(function(err, result) {
+					var resultUsers = (result.users === undefined).should.be.false;
+					result.users.should.have.length(2);
 					done();
 				});
 			});

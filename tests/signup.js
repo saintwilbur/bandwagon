@@ -67,6 +67,16 @@ describe('angularjs homepage', function() {
   	expect(error.getText()).toEqual('Please fill in your email');
   });
 
+  it('email should need an . ', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test');
+  	username.sendKeys('test');
+  	password.sendKeys('password');
+  	submit.click();
+  	expect(error.getText()).toEqual('Please fill in your email');
+  });
+
   it('should need a username', function() {
   	firstName.sendKeys('test');
   	lastName.sendKeys('test');
@@ -83,6 +93,60 @@ describe('angularjs homepage', function() {
   	email.sendKeys('test@test.com');
   	username.sendKeys('test');
   	password.sendKeys('');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 1 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('p');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 2 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('pa');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 3 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('pas');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 4 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('pass');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 5 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('passw');
+  	submit.click();
+  	expect(error.getText()).toEqual('Password should be longer');
+  });
+  it('Password needs more than 6 Characters', function() {
+  	firstName.sendKeys('test');
+  	lastName.sendKeys('test');
+  	email.sendKeys('test@test.com');
+  	username.sendKeys('test');
+  	password.sendKeys('passwo');
   	submit.click();
   	expect(error.getText()).toEqual('Password should be longer');
   });
