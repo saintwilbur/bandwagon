@@ -7,6 +7,7 @@ exports.config = {
   	'signin.js',
     'routesSpec.js',
     'navBar.js',
+    'soundcloudIntegration.js',
     'deleteAcct.js',
   	],
  /*

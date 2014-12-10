@@ -20,7 +20,7 @@ describe('test delete account', function() {
 		browser.get('http://localhost:3000/#!/');
 	});
 
-  	it('Cancel account button should load /gigs', function() {	
+  	it('Cancel delete account button should load /gigs', function() {	
   		signin();
 		droptoggle.click();
 		deleteAccount.click();
